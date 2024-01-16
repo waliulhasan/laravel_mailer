@@ -30,7 +30,7 @@ class MailJob implements ShouldQueue
     {
         $details = [
             'subject' => 'This mail is sent for just testing purpose',
-            'body' => 'Hello this is from waliul hasan, this email is sent for just testing. Thanks'
+            'body' => 'Hello this is from waliul hasan, this email is sent for just testing.'
         ];
         Mail::to('md.waliul.hasan.dpi@gmail.com')->send(new TestMail($details));
 

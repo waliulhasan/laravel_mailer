@@ -21,3 +21,5 @@ Route::get('/', function () {
 
 Route::get('/send-email', [MailSendController::class, 'sendEmail']);
 
+Route::get('/upload-image', [MailSendController::class, 'showForm']);
+Route::post('/upload-image', [MailSendController::class, 'processImage']);
