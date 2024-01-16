@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
@@ -32,10 +33,13 @@ class ImageUploadJob implements ShouldQueue
     public function handle()
     {
         // Process the large image data here, for example, save it to storage
-        $path = 'images/' . uniqid() . '.' . $this->imageData->extension();
-        Storage::put($path, file_get_contents($this->imageData->path()));
+        // $path = 'images/' . uniqid() . '.' . $this->imageData->extension();
+        // Storage::put($path, file_get_contents($this->imageData->path()));
+
+        $imageName = time() . '_' . $this->imageData->getClientOriginalExtension();
+        $this->imageData->storeAs('images', $imageName, 'public');
 
         // Log or notify when the job is completed
-        \Log::info('ProcessImage job completed.');
+        Log::info('ProcessImage job completed.');
     }
 }
